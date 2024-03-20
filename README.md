@@ -18,3 +18,18 @@ Watchdog File Uploader is a Python-based automation tool designed to monitor a s
 - Python 3.x
 - pip (Python package manager)
 - Required Python libraries: `pandas`, `watchdog`, `requests`, `boto3`
+
+
+## Further Reading
+
+For a detailed explanation of the project and its implementation, check out the accompanying Medium article:
+
+[Automating Attachment Management with Watchdog File Uploader](https://medium.com/your-medium-username/automating-attachment-management-with-watchdog-file-uploader-1234567890)
+
+
+## References
+
+- [Watchdog Documentation](https://python-watchdog.readthedocs.io/en/latest/index.html) - Official documentation for the Watchdog library used for monitoring file system events.
+- [Airtable API Documentation](https://airtable.com/api) - Documentation for the Airtable API, providing information on how to interact with Airtable programmatically.
+- [Boto3 Documentation](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) - Official documentation for Boto3, the AWS SDK for Python, used for interacting with Amazon S3.
+
