@@ -24,7 +24,7 @@ Watchdog File Uploader is a Python-based automation tool designed to monitor a s
 
 For a detailed explanation of the project and its implementation, check out the accompanying Medium article:
 
-[Automating Attachment Management with Watchdog File Uploader](https://medium.com/your-medium-username/automating-attachment-management-with-watchdog-file-uploader-1234567890)
+[Automating Attachment Management with Watchdog File Uploader](https://sungajiwala54.medium.com/automating-attachment-management-in-airtable-the-watchdog-file-uploader-project-b48cde44cb22)
 
 
 ## References
