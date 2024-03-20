@@ -1,4 +1,4 @@
-# Watchdog File Uploader
+# Automating Attachment Management with Watchdog File Uploader
 
 ![model_diagram](images/workflow.jpg)
 
