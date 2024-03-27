@@ -16,6 +16,7 @@ from aws_s3 import delete_files_in_folder
 class MyHandler(FileSystemEventHandler):
     def __init__(self, dataframe):
         self.dataframe = dataframe
+        self.folder_path = self.get_folder_path()
 
     def extract_trans_no(self, filename):
         # Extract the transaction number from the filename
@@ -46,15 +47,16 @@ class MyHandler(FileSystemEventHandler):
         time.sleep(10)
         folder_name = 'docs/'  # Note the trailing slash to specify the folder
         delete_files_in_folder(bucket_name, folder_name)
+    
+    def get_folder_path(self):
+            current_month_year = datetime.now().strftime("%Y%m")
+            return os.path.join(r'Z:\NOTES', current_month_year)
 
 if __name__ == "__main__":
     # Set the format for logging info
     logging.basicConfig(level=logging.INFO,
                         format='%(asctime)s - %(message)s',
                         datefmt='%Y-%m-%d %H:%M:%S')
-
-    # Set format for displaying path
-    path = sys.argv[1] if len(sys.argv) > 1 else '.'
 
     # Create an empty DataFrame to store file information
     df = pd.DataFrame(columns=['Path', 'Filename', 'Trans#', 'public_Url'])
@@ -64,6 +66,7 @@ if __name__ == "__main__":
 
     # Initialize Observer
     observer = Observer()
+    path = event_handler.folder_path
     observer.schedule(event_handler, path, recursive=True)
 
     # Start the observer
@@ -74,6 +77,12 @@ if __name__ == "__main__":
             if (now.hour == 8 and now.minute == 30):
                 event_handler.run_at_specific_time()
                 time.sleep(70)
+            elif now.minute == 0:  # Check every hour
+                new_folder_path = event_handler.get_folder_path()
+                if new_folder_path != event_handler.folder_path:
+                    event_handler.folder_path = new_folder_path
+                    observer.unschedule_all()  # Unscheduling existing watches
+                    observer.schedule(event_handler, new_folder_path, recursive=True)
             else:
                 time.sleep(1)
     except KeyboardInterrupt:
